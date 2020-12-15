@@ -1,0 +1,257 @@
+import java.util.Arrays;
+import java.util.Scanner;
+public class Student {
+
+
+    int no_of_subjects =0;
+    int[] grade_points= new int[100];
+    String[] subject= new String[100];
+    String[] course_code= new String[100];
+    String[] grade_letter_point = new String[100]  ;
+    String seat_no;
+    String name;
+    String date;
+    String semester ;
+    String date_of_declaration;
+    String date_of_issue;
+    
+
+    int[] scored_marks = new int[100];
+    int[] max_marks = new int[100];
+
+    int[] course_credit = new int[100];
+    int total_marks;
+    int total_Scored_marks;
+    int total_credits;
+    int Pr_No = 0 ;
+    int attempt_no;
+
+
+
+
+
+    String leftAlignFormat = "| %-2d | %-7s | %-34s | %-4d | %-9d | %-5d | %-8s| %-8d |%n";
+    String leftAlignFormat1 = "| %49s | %-4d | %-9d | %-16s| %-8d |%n";
+    String leftAlignFormatHead = "| %13s %-14s : %-67s|%n";
+    String leftAlignFormatheadRight= "|%64s  %4s   %-23d|%n";
+    String leftAlignFormatblank = "| %98s|%n";
+    String leftAlignFormatFooter1 = "| %50s %-10s:%-32d|%n";
+    String leftAlignFormatFooter2 = "| %-25s: %-25s  %-15s : %-26s|%n";
+    String leftAlignFormatFooter3 = "| %-25s: %-70s |%n";
+    String leftAlignFormatFooter4 = "| %10s %-25s  %10s %-48s |%n";
+
+
+    void readData(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please enter Information required  to print marksheet ");
+
+        System.out.println("Enter semester : ");
+        semester= input.next();
+        System.out.println("Enter month and year :");
+        date = input.next();
+        System.out.println("Enter Candidate Name :");
+        name =input.next();
+        System.out.println("Enter PR.No  :");
+        Pr_No = input.nextInt();
+        System.out.println("Enter Seat no  :");
+        seat_no = input.next();
+        System.out.println("Enter Attempt no :");
+        attempt_no = input.nextInt();
+        System.out.println("Enter Declaration Date  :");
+        date_of_declaration =input.next();
+        System.out.println("Enter Issue Date :");
+        date_of_issue =input.next();
+        System.out.println(" enter numbers of subjects  :");
+        no_of_subjects = input.nextInt();
+
+
+        for (int i = 0;i<no_of_subjects;i++){
+            System.out.print("enter course code");
+            course_code[i]=input.next();
+            System.out.print("subject neme:");
+            subject[i]=input.next ();
+            System.out.println("enter Marks Scored :");
+            scored_marks[i]=input.nextInt();
+            System.out.println("enter credits for  :");
+            course_credit[i]=input.nextInt();
+
+
+
+
+
+        }
+
+
+
+    }
+
+
+    void calculate(){
+        for (int i = 0 ;i <no_of_subjects;i++){
+            max_marks[i] = (course_credit[i])*25;
+            total_marks = total_marks+max_marks[i];
+            total_Scored_marks = total_Scored_marks+scored_marks[i];
+            total_credits=total_credits+course_credit[i];
+
+
+            if( course_credit[i]==2) {
+
+                if (scored_marks[i]>=0 && scored_marks[i]<(36/2)){
+                    grade_points[i] = 0 ;
+                    grade_letter_point[i] = "Fail";
+
+                }
+                else if (scored_marks[i] >=(36/2) && scored_marks[i] <(40/2)){
+                    grade_letter_point[i] = "P";
+                    grade_points[i] = 4;
+                }
+                else if (scored_marks[i]>=(40/2) && scored_marks[i] <(50/2)){
+                    grade_letter_point[i]= "C";
+                    grade_points[i] = 5;
+                }
+                else if (scored_marks[i] <=(50/2) && scored_marks[i] <(60/2)){
+                    grade_letter_point[i] = "B";
+                    grade_points[i] = 6;
+                }
+                else if (scored_marks[i]>=(60/2) && scored_marks[i] <(70/2)){
+                    grade_letter_point[i] = "B+";
+                    grade_points[i] = 7;
+                }
+                else if (scored_marks[i]>=(70/2) && scored_marks[i] <(80/2)){
+                    grade_letter_point[i] = "A";
+                    grade_points[i] = 8;
+                }
+                else if (scored_marks [i]>=(80/2) && scored_marks[i] <(90/2)){
+                    grade_letter_point[i] = "A+";
+                    grade_points[i] = 9;
+                }
+                else if (scored_marks[i]>=(90/2) && scored_marks[i] <=(100/2)){
+                    grade_letter_point[i] = "O";
+                    grade_points[i] = 10;
+                }
+
+
+            }
+
+            else
+            {
+
+
+
+                if (scored_marks[i]>=0 && scored_marks[i]<36){
+                    grade_points[i] = 0 ;
+                    grade_letter_point[i] = "Fail";
+
+                }
+
+                else if (scored_marks[i] >=36 && scored_marks[i] <40){
+                    grade_letter_point[i] = "P";
+                    grade_points[i] = 4;
+                }
+
+                else if (scored_marks[i]>=40 && scored_marks[i] <50){
+                    grade_letter_point[i]= "C";
+                    grade_points[i] = 5;
+                }
+
+                else if (scored_marks[i] <=50 && scored_marks[i] <60){
+                    grade_letter_point[i] = "B";
+                    grade_points[i] = 6;
+                }
+                else if (scored_marks[i]>=60 && scored_marks[i] <70){
+                    grade_letter_point[i] = "B+";
+                    grade_points[i] = 7;
+                }
+
+                else if (scored_marks[i]>=70 && scored_marks[i] <80){
+                    grade_letter_point[i] = "A";
+                    grade_points[i] = 8;
+                }
+
+                else if (scored_marks [i]>=80 && scored_marks[i] <90){
+                    grade_letter_point[i] = "A+";
+                    grade_points[i] = 9;
+                }
+                else if (scored_marks[i]>=90 && scored_marks[i] <101){
+                    grade_letter_point[i] = "O";
+                    grade_points[i] = 10;
+                }
+                else {
+                    grade_letter_point[i] = "AB";
+                    grade_points[i] = 0;
+                }
+            }
+        }
+
+
+    }
+
+
+
+
+    void DisplayData(){
+       System.out.println("\n\n\n");
+       System.out.println("|===================================================================================================|");
+       System.out.println("|\t\t\t\t\t\t\t\t MURGAON EDUCATION SOCIETY'S\t\t\t\t\t\t\t\t\t\t|");
+       System.out.println("|\t\t\t\t\t\t\t\t College Of Arts & Commerce \t\t\t\t\t\t\t\t\t\t|");
+       System.out.println("|\t\t\t\t\t\t\t\t   Zuarinagar,Goa-403726 \t\t\t\t\t\t\t\t\t\t\t|");
+       System.out.println("|\t\t\t Accredited by NAAC with B Grade and Afiliated to Goa university\t\t\t\t\t\t|");
+       System.out.printf(leftAlignFormatblank ," ");
+       System.out.println("|\t\t\t\t\t\t\t\t Grade Certificate\t\t\t\t\t\t\t\t\t\t\t\t\t|");
+       System.out.printf(leftAlignFormatheadRight ," ","PR.No :",Pr_No);
+       System.out.printf(leftAlignFormatHead," ","Degree","Bacholer in Computer Application");
+       System.out.printf(leftAlignFormatHead," ","Semester",semester);
+       System.out.printf(leftAlignFormatHead," ","Date of exam",date);
+       System.out.printf(leftAlignFormatHead," ","Name",name);
+       System.out.printf(leftAlignFormatHead," ","Seat",seat_no);
+       System.out.println("|___________________________________________________________________________________________________|");
+       System.out.println("|S.No|C.Code   | Subject/Paper                      |Max.mks|Scored.Mks|Grade.P|Letter.Grd|C.Credits|                                                                                        |");
+       System.out.println("|----+---------+------------------------------------+------+-----------+-------+---------+----------|");
+
+
+
+       for (int i = 0 ; i < no_of_subjects ;i++){
+        System.out.printf(leftAlignFormat,(i+1),course_code[i],subject[i],max_marks[i],scored_marks[i],grade_points[i],grade_letter_point[i],course_credit[i],"|");
+        System.out.println("|----+---------+------------------------------------+------+-----------+-------+---------+----------|");
+
+
+        }
+
+       System.out.printf(leftAlignFormat1,"total",total_marks,total_Scored_marks," ",total_credits);
+       System.out.println("|---------------------------------------------------------------------------------------------------|");
+       System.out.printf(leftAlignFormatblank ," ");
+       System.out.printf(leftAlignFormatblank ," ");
+       System.out.printf(leftAlignFormatFooter1," ","No of Attempts",attempt_no);
+       System.out.printf(leftAlignFormatblank ," ");
+       System.out.printf(leftAlignFormatblank ," ");
+       System.out.printf(leftAlignFormatblank ," ");
+       System.out.printf(leftAlignFormatblank ," ");
+       System.out.printf(leftAlignFormatblank ," ");
+       System.out.printf(leftAlignFormatFooter2 ,"Read by ","............","checked by ",".............");
+        System.out.printf(leftAlignFormatblank ," ");
+       System.out.printf(leftAlignFormatFooter2 ,"Date of Declaration",date_of_declaration,"Date of Issue",date_of_issue);
+       System.out.printf(leftAlignFormatFooter3 ,"Meddium of Instruction","English");
+       System.out.printf(leftAlignFormatblank ," ");
+       System.out.printf(leftAlignFormatblank ," ");
+       System.out.printf(leftAlignFormatblank ," ");
+
+       System.out.printf(leftAlignFormatFooter4 ," ","Seal of College"," ","Principal");
+       System.out.printf(leftAlignFormatblank ," ");
+       System.out.println("|===================================================================================================|");
+
+   }
+
+
+
+
+
+
+    public static void main(String[] args) {
+       Student obj = new Student();
+        obj.readData();
+        obj.calculate();
+        obj.DisplayData();
+
+    }
+
+}
